@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.blog.kms.dao.PostDao">
+
+<resultMap id="postResultMap" type="Post">
+    <result column="id" property="id"/>
+    <result column="title" property="title"/>
+    <result column="category" property="category"/>
+    <result column="content" property="content"/>
+    <result column="created_at" property="createdAt"/>
+    <result column="updated_at" property="updatedAt"/>
+</resultMap>
+
+<select id="getAllPost" resultMap="postResultMap">
+    SELECT * FROM post
+</select>
+
+<insert id="addPost" parameterType="Post">
+    INSERT INTO post (title, category, content) 
+    VALUES (#{title}, #{category}, #{content})
+</insert>
+
+<select id ="getPostByCategory" resultMap="postResultMap" parameterType="string">
+	SELECT * FROM post where category = #{category}
+</select>
+
+<select id="getCategoryAll" resultMap="categoryPostCountResultMap">
+    SELECT category, COUNT(*) AS post_count
+    FROM post
+    GROUP BY category
+</select>
+
+<resultMap id="categoryPostCountResultMap" type="CategoryPostCount">
+    <result property="category" column="category"/>
+    <result property="postCount" column="post_count"/>
+</resultMap>
+
+
+</mapper>
