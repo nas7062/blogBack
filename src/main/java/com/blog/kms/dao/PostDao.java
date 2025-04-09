@@ -13,4 +13,5 @@ public interface PostDao {
 	 List<CategoryPostCount> getCategoryAll() throws Exception;
 	 void addPost(Post post) throws Exception;
 	 List<Post> getPostByCategory(String category) throws Exception;
+	 Post getPostById(Long  id) throws Exception;
 }

@@ -63,6 +63,19 @@ public class PostController {
 	        return ResponseEntity.status(500).build();
 	    }
 	}
+	@GetMapping("getPostById/{numId}")
+	public ResponseEntity<Post> getPostById(@PathVariable Long  numId) {
+		try {
+	        // 서비스에서 모든 게시글을 조회
+	        Post post = postService.getPostById(numId);
+	        System.out.println(post);
+	        // 정상적으로 조회한 게시글 리스트를 200 OK 상태로 반환
+	        return ResponseEntity.ok(post);
+	    } catch (Exception e) {
+	        // 서버 에러 발생 시 500 상태 코드 반환
+	        return ResponseEntity.status(500).build();
+	    }
+	}
 	
 	@GetMapping("getCategoryAll")
 	public ResponseEntity<List<CategoryPostCount>> getCategoryAll() {

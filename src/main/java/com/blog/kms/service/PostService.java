@@ -29,4 +29,8 @@ public class PostService {
 		return postDao.getPostByCategory(category);
 	}
 	
+	public Post getPostById(Long  id) throws Exception {
+		return postDao.getPostById(id);
+	}
+	
 }

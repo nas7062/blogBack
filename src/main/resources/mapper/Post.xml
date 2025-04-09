@@ -18,6 +18,12 @@
     SELECT * FROM post
 </select>
 
+
+<select id ="getPostById" resultMap="postResultMap" parameterType="Long">
+	SELECT * FROM post where id = #{id}
+</select>
+
+
 <insert id="addPost" parameterType="Post">
     INSERT INTO post (title, category, content) 
     VALUES (#{title}, #{category}, #{content})
